@@ -5,6 +5,24 @@
     <body>
         <button onclick="btnClick()">Hello World!</button>
         <!--<script type="text/javascript" src="app.js"></script>-->
-        <script type="text/javascript" src="app2.js"></script>
+        <script type="text/javascript">
+        	var isApp = false;
+
+			function btnClick() {
+			  if (parent.isApp && parent.isApp == true) {
+			  	/* RECEIVING MSG WITHIN IFRAME */
+			      function listener(event) {
+			          document.write (event.data);
+			          console.log(JSON.parse(event.data));
+			      }
+
+			      if (window.addEventListener){       
+			        addEventListener("message", listener, false)      
+			      } else {        
+			        attachEvent("onmessage", listener)        
+			      }
+			  }
+			}
+        </script>
     </body>
 </html>
