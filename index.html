@@ -10,7 +10,7 @@
         <!--<script type="text/javascript" src="app.js"></script>-->
         <script type="text/javascript">
 
-			var onDeviceReady = function () {
+			(function() {
 
 			  	/* RECEIVING MSG WITHIN IFRAME */
 				function listener(event) {
@@ -25,9 +25,7 @@
 					attachEvent("onmessage", listener)        
 				}
 			  
-			}
-
-		    document.addEventListener('deviceready', onDeviceReady, false);
+			})();
 
         </script>
     </body>
