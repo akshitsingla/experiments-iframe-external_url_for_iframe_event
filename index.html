@@ -3,26 +3,32 @@
         <title>External URL</title>
     </head>
     <body>
-        <button onclick="btnClick()">Hello World!</button>
+
+    	<h1>Mock HTML page</h1>
+    	<p id="jsonResponse"></p>
+
         <!--<script type="text/javascript" src="app.js"></script>-->
         <script type="text/javascript">
-        	var isApp = false;
 
-			function btnClick() {
-			  if (parent.isApp && parent.isApp == true) {
+			var onDeviceReady = function () {
+
 			  	/* RECEIVING MSG WITHIN IFRAME */
-			      function listener(event) {
-			          document.write (event.data);
-			          console.log(JSON.parse(event.data));
-			      }
+				function listener(event) {
+					var jsonDiv = document.getElementById("jsonResponse");
+				  	jsonDiv.innerHTML = event.data;
+				  	console.log(JSON.parse(event.data));
+				}
 
-			      if (window.addEventListener){       
-			        addEventListener("message", listener, false)      
-			      } else {        
-			        attachEvent("onmessage", listener)        
-			      }
-			  }
+				if (window.addEventListener){       
+					addEventListener("message", listener, false)      
+				} else {        
+					attachEvent("onmessage", listener)        
+				}
+			  
 			}
+
+		    document.addEventListener('deviceready', onDeviceReady, false);
+
         </script>
     </body>
 </html>
